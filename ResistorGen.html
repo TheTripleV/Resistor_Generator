@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<canvas id="canvas" width="screen.width" height="screen.height" style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.</canvas>
+
+<script>
+
+var c=document.getElementById("canvas");
+c.width = screen.width;
+c.height = ((screen.width)*9/16);
+var ctx=c.getContext("2d");
+var bnd = 4;
+var checkvar = true;
+var color;
+var colornumber;
+var tempwidth = (self.innerWidth /2);
+var tempheight = (self.innerHeight /2);
+
+ctx.font = 'bold 100px sans-serif';
+ctx.textBaseline = 'bottom';
+ctx.textAlign = 'center';
+ctx.fillText("START", tempwidth, tempheight);
+ctx.stroke();
+
+function clear(){
+		c.width = screen.width;
+        c.height = ((screen.width)*9/16);
+        ctx.fillStyle='#E9D0B1';
+        ctx.fillRect((c.width/4),(c.height/4),(c.width/2),(c.height/3));
+        ctx.fillStyle='#DB7093';
+        ctx.fillRect(0,0,(c.width/10),(c.width/10));
+        ctx.fillStyle='#000000';
+        ctx.font = 'bold 48px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText("Reset",(c.width/20), (c.height/10));
+		ctx.stroke();
+		}
+function fullscreen(){
+	    var el = document.getElementById('canvas');
+
+           if(el.webkitRequestFullScreen) {
+               el.webkitRequestFullScreen();
+           }
+          else {
+             el.mozRequestFullScreen();
+          }            
+        }
+function testchoose(){
+	var prob =Math.floor(Math.random()*5)+1;
+	if (prob==1 || prob==2){
+		bnd = 4;
+		fourband();
+		} 
+	if (prob==3 || prob==4){
+		bnd = 5;
+		fiveband();
+		}
+	if (prob==5){
+		bnd = 6;
+		sixband();
+		}
+	}
+function fourband(){
+	ctx.fillStyle=firstrand();
+	ctx.fillRect(((c.width/4)+(c.width/16)),(c.height/4),(c.width/24),(c.height/3));
+	ctx.stroke();
+		setTimeout(function(){}, 300);
+	ctx.fillStyle=firstrand();
+	ctx.fillRect(((c.width/4)+(c.width/16)+(c.width/9)),(c.height/4),(c.width/24),(c.height/3));
+	ctx.stroke();
+		setTimeout(function(){}, 300);
+	ctx.fillStyle=multiplier();
+	ctx.fillRect(((c.width/4)+(c.width/16)+(c.width/4.5)),(c.height/4),(c.width/24),(c.height/3));
+	ctx.stroke();
+		setTimeout(function(){}, 300);
+	ctx.fillStyle=tolerance();
+	ctx.fillRect(((c.width/4)+(c.width/16)+(c.width/3)),(c.height/4),(c.width/24),(c.height/3));
+	ctx.stroke();
+
+
+	}
+function fiveband(){
+	ctx.fillStyle=firstrand();
+	ctx.fillRect(((c.width/4)+(c.width/16)),(c.height/4),(c.width/24),(c.height/3));
+	ctx.stroke();
+		setTimeout(function(){}, 300);
+	ctx.fillStyle=firstrand();
+	ctx.fillRect(((c.width/4)+(c.width/16)+(c.width/12)),(c.height/4),(c.width/24),(c.height/3));
+	ctx.stroke();
+		setTimeout(function(){}, 300);
+	ctx.fillStyle=firstrand();
+	ctx.fillRect(((c.width/4)+(c.width/16)+(c.width/6)),(c.height/4),(c.width/24),(c.height/3));
+	ctx.stroke();
+		setTimeout(function(){}, 300);
+	ctx.fillStyle=multiplier();
+	ctx.fillRect(((c.width/4)+(c.width/16)+(c.width/4)),(c.height/4),(c.width/24),(c.height/3));
+	ctx.stroke();
+		setTimeout(function(){}, 300);
+	ctx.fillStyle=tolerance();
+	ctx.fillRect(((c.width/4)+(c.width/16)+(c.width/3)),(c.height/4),(c.width/24),(c.height/3));
+	ctx.stroke();
+
+	}
+function sixband(){
+	ctx.fillStyle=firstrand();
+	ctx.fillRect(((c.width/4)+((1.5/16)*c.width/2)),(c.height/4),(c.width/24),(c.height/3));
+	ctx.stroke();
+		setTimeout(function(){}, 300);
+	ctx.fillStyle=firstrand();
+	ctx.fillRect(((c.width/4)+(c.width/16)+(c.width/16)),(c.height/4),(c.width/24),(c.height/3));
+	ctx.stroke();
+		setTimeout(function(){}, 300);
+	ctx.fillStyle=firstrand();
+	ctx.fillRect(((c.width/4)+(c.width/16)+(c.width/7.5)),(c.height/4),(c.width/24),(c.height/3));
+	ctx.stroke();
+		setTimeout(function(){}, 300);
+	ctx.fillStyle=multiplier();
+	ctx.fillRect(((c.width/4)+(c.width/16)+(c.width/5)),(c.height/4),(c.width/24),(c.height/3));
+	ctx.stroke();
+		setTimeout(function(){}, 300);
+	ctx.fillStyle=tolerance();
+	ctx.fillRect(((c.width/4)+(c.width/16)+(c.width/3.75)),(c.height/4),(c.width/24),(c.height/3));
+	ctx.stroke();
+		setTimeout(function(){}, 300);
+	ctx.fillStyle=temperature();
+	ctx.fillRect(((c.width/4)+((13/16)*c.width/2)),(c.height/4),(c.width/24),(c.height/3));
+	ctx.stroke();
+
+	}
+function firstrand(){
+          colornumber =Math.floor(Math.random()*10);
+          color = ["#000000", "#8B4513", "#E60000", "#FF9900", "#FFFF00", "#32CD32", "#0000CD", "#800080", "#8F8F8F", "#F8F8FF"];
+	      return color[colornumber];
+	}
+function multiplier(){
+	var colornumber1 = Math.floor(Math.random()*10);
+	var color1 = ["#C0C0C0","#D4A017","#000000", "#8B4513", "#E60000", "#FF9900", "#FFFF00", "#32CD32", "#0000CD", "#800080" ];
+    return color1[colornumber1];
+	}
+function tolerance(){
+	var colornumber2 = Math.floor(Math.random()*7);
+	var color2 = ["#C0C0C0","#D4A017","#8B4513", "#E60000","#32CD32", "#0000CD", "#800080"];
+	return color2[colornumber2];
+	}
+function temperature(){
+	var colornumber3 = Math.floor(Math.random()*4);
+	var color3 = ["#8B4513","#E60000","#FF9900", "#FFFF00"];
+	return color3[colornumber3];
+	}
+function check(){
+	if (checkvar == true){
+	clear();
+	setTimeout(testchoose(), 300);
+	checkvar = false;
+	}	
+	}  
+	document.getElementById('canvas').addEventListener("click",fullscreen);
+	document.getElementById('canvas').addEventListener("click",check);
+	canvas.addEventListener("mousedown", getPosition, false);
+
+function getPosition(event)
+{
+  var x = event.x;
+  var y = event.y;
+
+  var canvas = document.getElementById("canvas");
+
+  x -= canvas.offsetLeft;
+  y -= canvas.offsetTop;
+  if ((x<(c.width/10))&&(y<(c.width/10))){
+  	checkvar = true;
+  	check();
+  	}
+
+}
+</script> 
+
+</body>
+</html>
+
